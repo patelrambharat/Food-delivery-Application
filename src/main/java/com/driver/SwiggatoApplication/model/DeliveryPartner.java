@@ -18,6 +18,7 @@ import java.util.List;
 @Table(name="delivery_partner")
 public class DeliveryPartner {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
@@ -26,6 +27,7 @@ public class DeliveryPartner {
 
     @Column(unique = true,nullable = false)
     @Size(min = 10, max = 10)
+
     String mobileNo;
 
     @Enumerated(EnumType.STRING)
