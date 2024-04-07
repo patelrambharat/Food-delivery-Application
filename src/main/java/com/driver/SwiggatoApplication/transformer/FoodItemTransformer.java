@@ -1,5 +1,6 @@
 package com.driver.SwiggatoApplication.transformer;
 
+import com.driver.SwiggatoApplication.dto.requestDto.FoodRequest;
 import com.driver.SwiggatoApplication.dto.responseDto.FoodResponse;
 import com.driver.SwiggatoApplication.model.FoodItem;
 
@@ -25,5 +26,15 @@ public class FoodItemTransformer {
             foodResponseList.add(foodResponse);
         }
         return foodResponseList;
+    }
+
+    public static FoodItem FoodRequestToFoodItem(FoodRequest foodRequest) {
+        return FoodItem.builder()
+                .dishName(foodRequest.getDishName())
+                .price(foodRequest.getPrice())
+                .foodCategory(foodRequest.getCategory())
+                .veg(foodRequest.isVeg())
+                .available(foodRequest.isAvailable())
+                .build();
     }
 }

@@ -10,8 +10,17 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FoodRequest {
+    int restaurantId;
 
-    FoodCategory foodCategory;
+    String dishName;
+
+    double price;
+
+    FoodCategory category;
+
     boolean veg;
+
     boolean available;
+
+
 }
