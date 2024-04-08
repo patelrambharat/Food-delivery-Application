@@ -1,6 +1,5 @@
 package com.driver.SwiggatoApplication.dto.requestDto;
 
-import com.driver.SwiggatoApplication.Enum.FoodCategory;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -10,17 +9,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FoodRequest {
-    int restaurantId;
-
-    String dishName;
-
-    double price;
-
-    FoodCategory category;
-
-    boolean veg;
-
-    boolean available;
-
-
+    int requiredQuantity;
+    String customerMobile;
+    int menuItemId;
 }

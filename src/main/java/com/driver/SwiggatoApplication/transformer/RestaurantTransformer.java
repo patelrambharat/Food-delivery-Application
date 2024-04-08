@@ -1,7 +1,7 @@
 package com.driver.SwiggatoApplication.transformer;
 
 import com.driver.SwiggatoApplication.dto.requestDto.RestaurantRequest;
-import com.driver.SwiggatoApplication.dto.responseDto.FoodResponse;
+import com.driver.SwiggatoApplication.dto.responseDto.MenuResponse;
 import com.driver.SwiggatoApplication.dto.responseDto.RestaurantResponse;
 import com.driver.SwiggatoApplication.model.Restaurant;
 
@@ -16,14 +16,14 @@ public class RestaurantTransformer {
                 .location(restaurantRequest.getLocation())
                 .contactNumber(restaurantRequest.getContactNumber())
                 .restaurantCategory(restaurantRequest.getRestaurantCategory())
-                .availableFoodItems(new ArrayList<>())
+                .availableMenuItems(new ArrayList<>())
                 .orders(new ArrayList<>())
                 .opened(true)
                 .build();
     }
     public static RestaurantResponse RestaurantToRestaurantResponse(Restaurant restaurant) {
 
-        List<FoodResponse> menu = restaurant.getAvailableFoodItems()
+        List<MenuResponse> menu = restaurant.getAvailableMenuItems()
                 .stream()
                 .map(foodItem -> FoodItemTransformer.FoodItemToFoodResponse(foodItem))
                 .collect(Collectors.toList());

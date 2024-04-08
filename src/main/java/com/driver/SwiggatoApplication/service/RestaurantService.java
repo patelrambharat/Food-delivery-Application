@@ -1,10 +1,10 @@
 package com.driver.SwiggatoApplication.service;
 
-import com.driver.SwiggatoApplication.dto.requestDto.FoodRequest;
+import com.driver.SwiggatoApplication.dto.requestDto.MenuRequest;
 import com.driver.SwiggatoApplication.dto.requestDto.RestaurantRequest;
 import com.driver.SwiggatoApplication.dto.responseDto.RestaurantResponse;
 import com.driver.SwiggatoApplication.exception.RestaurantNotFoundException;
-import com.driver.SwiggatoApplication.model.FoodItem;
+import com.driver.SwiggatoApplication.model.MenuItem;
 import com.driver.SwiggatoApplication.model.Restaurant;
 import com.driver.SwiggatoApplication.repository.RestaurantRepository;
 import com.driver.SwiggatoApplication.transformer.FoodItemTransformer;
@@ -12,8 +12,6 @@ import com.driver.SwiggatoApplication.transformer.RestaurantTransformer;
 import com.driver.SwiggatoApplication.utils.ValidationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class RestaurantService {
@@ -66,7 +64,7 @@ public class RestaurantService {
         return "Restaurant is closed";
     }
 
-    public RestaurantResponse addFoodItemToRestaurant(FoodRequest foodRequest, int id) {
+    public RestaurantResponse addMenuItemToRestaurant(MenuRequest menuRequest, int id) {
 //        FoodItem foodItem = FoodItemTransformer.FoodRequestToFoodItem(foodRequest);
 //        // check restaurant valid or not
 //        Optional<Restaurant> optional = restaurantRepository.findById(id);
@@ -86,16 +84,16 @@ public class RestaurantService {
 //        return RestaurantTransformer.RestaurantToRestaurantResponse(saved);
 
         // check reataurant is valid or not
-        if(!validationUtils.validateRestaurantId(foodRequest.getRestaurantId())){
+        if(!validationUtils.validateRestaurantId(menuRequest.getRestaurantId())){
             throw new RestaurantNotFoundException("Restaurant doesn't exist!!");
         }
 
-        Restaurant restaurant = restaurantRepository.findById(foodRequest.getRestaurantId()).get();
+        Restaurant restaurant = restaurantRepository.findById(menuRequest.getRestaurantId()).get();
         // make food entity
-        FoodItem foodItem = FoodItemTransformer.FoodRequestToFoodItem(foodRequest);
-        foodItem.setRestaurant(restaurant);
+        MenuItem menuItem = FoodItemTransformer.FoodRequestToFoodItem(menuRequest);
+        menuItem.setRestaurant(restaurant);
 
-        restaurant.getAvailableFoodItems().add(foodItem);
+        restaurant.getAvailableMenuItems().add(menuItem);
 
         // save rest and food
         Restaurant savedRestaurant = restaurantRepository.save(restaurant);

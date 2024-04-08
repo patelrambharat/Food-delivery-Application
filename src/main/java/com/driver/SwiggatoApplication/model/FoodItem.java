@@ -1,12 +1,8 @@
 package com.driver.SwiggatoApplication.model;
 
-import com.driver.SwiggatoApplication.Enum.FoodCategory;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Data
@@ -14,33 +10,28 @@ import java.util.List;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
-@Table(name = "food_item")
+@Table(name="food-item")
 public class FoodItem {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    String dishName;
+    int requiredQuantity;
 
-    double price;
+    double totalCost;
 
-    @Enumerated(EnumType.STRING)
-    FoodCategory foodCategory;
-
-    boolean veg;
-
-    boolean available;
-
-    // cardinality relation
     @ManyToOne
     @JoinColumn
     Cart cart;
 
     @ManyToOne
     @JoinColumn
-    OrderEntity orderEntity;
+    MenuItem menuItem;
 
     @ManyToOne
     @JoinColumn
-    Restaurant restaurant;
+    OrderEntity order;
+
+
 }

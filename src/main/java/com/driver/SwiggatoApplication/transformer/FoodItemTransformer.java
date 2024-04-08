@@ -1,40 +1,40 @@
 package com.driver.SwiggatoApplication.transformer;
 
-import com.driver.SwiggatoApplication.dto.requestDto.FoodRequest;
-import com.driver.SwiggatoApplication.dto.responseDto.FoodResponse;
-import com.driver.SwiggatoApplication.model.FoodItem;
+import com.driver.SwiggatoApplication.dto.requestDto.MenuRequest;
+import com.driver.SwiggatoApplication.dto.responseDto.MenuResponse;
+import com.driver.SwiggatoApplication.model.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FoodItemTransformer {
-    public static FoodResponse FoodItemToFoodResponse(FoodItem foodItem){
-        return FoodResponse.builder()
-                .dishName(foodItem.getDishName())
-                .price(foodItem.getPrice())
-                .foodCategory(foodItem.getFoodCategory())
-                .veg(foodItem.isVeg())
+    public static MenuResponse FoodItemToFoodResponse(MenuItem menuItem){
+        return MenuResponse.builder()
+                .dishName(menuItem.getDishName())
+                .price(menuItem.getPrice())
+                .foodCategory(menuItem.getCategory())
+                .veg(menuItem.isVeg())
                 .build();
     }
-    public static List<FoodResponse> FoodItemListToFoodResponseList(List<FoodItem>foodItemList) {
-        if(foodItemList == null || foodItemList.size()==0){
-            return  new ArrayList<FoodResponse>();
+    public static List<MenuResponse> FoodItemListToFoodResponseList(List<MenuItem> menuItemList) {
+        if(menuItemList == null || menuItemList.size()==0){
+            return  new ArrayList<MenuResponse>();
         }
-        List<FoodResponse> foodResponseList = new ArrayList<>();
-        for (FoodItem foodItem : foodItemList) {
-            FoodResponse foodResponse = FoodItemTransformer.FoodItemToFoodResponse(foodItem);
-            foodResponseList.add(foodResponse);
+        List<MenuResponse> menuResponseList = new ArrayList<>();
+        for (MenuItem menuItem : menuItemList) {
+            MenuResponse menuResponse = FoodItemTransformer.FoodItemToFoodResponse(menuItem);
+            menuResponseList.add(menuResponse);
         }
-        return foodResponseList;
+        return menuResponseList;
     }
 
-    public static FoodItem FoodRequestToFoodItem(FoodRequest foodRequest) {
-        return FoodItem.builder()
-                .dishName(foodRequest.getDishName())
-                .price(foodRequest.getPrice())
-                .foodCategory(foodRequest.getCategory())
-                .veg(foodRequest.isVeg())
-                .available(foodRequest.isAvailable())
+    public static MenuItem FoodRequestToFoodItem(MenuRequest menuRequest) {
+        return MenuItem.builder()
+                .dishName(menuRequest.getDishName())
+                .price(menuRequest.getPrice())
+                .category(menuRequest.getCategory())
+                .veg(menuRequest.isVeg())
+                .available(menuRequest.isAvailable())
                 .build();
     }
 }

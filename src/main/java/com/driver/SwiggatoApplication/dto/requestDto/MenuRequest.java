@@ -1,18 +1,26 @@
-package com.driver.SwiggatoApplication.dto.responseDto;
+package com.driver.SwiggatoApplication.dto.requestDto;
 
 import com.driver.SwiggatoApplication.Enum.FoodCategory;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class FoodResponse {
+public class MenuRequest {
+    int restaurantId;
+
     String dishName;
+
     double price;
+
     FoodCategory category;
+
     boolean veg;
-    int quantityAdded;
+
+    boolean available;
+
+
 }
