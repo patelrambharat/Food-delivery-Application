@@ -19,7 +19,7 @@ package com.driver.SwiggatoApplication.model;
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         int id;
 
-        double cartTotal;
+        int cartTotal;
 
         // cardinality Relationship
         @OneToOne
