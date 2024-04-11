@@ -47,6 +47,9 @@ public class RestaurantController {
         }
 
         // get menu of a restaurant
+        // give all the restauratns who have served more than 'x' number of orders
+
+        // give the restaurants which have maximum number of items in their menu and which are opened also
     }
 }
 

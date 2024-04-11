@@ -9,6 +9,9 @@ import com.driver.SwiggatoApplication.repository.DeliveryPartnerRepo;
 import com.driver.SwiggatoApplication.repository.OrderEntityRepo;
 import com.driver.SwiggatoApplication.repository.RestaurantRepository;
 import com.driver.SwiggatoApplication.transformer.OrderTransformer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,6 +22,9 @@ public class OrderService {
     final DeliveryPartnerRepo deliveryPartnerRepo;
     final OrderEntityRepo orderEntityRepo;
     final RestaurantRepository restaurantRepository;
+
+//    @Autowired
+//    JavaMailSender javaMailSender;
 
     public OrderService(CustomerRepository customerRepository, DeliveryPartnerRepo deliveryPartnerRepo, OrderEntityRepo orderEntityRepo, RestaurantRepository restaurantRepository) {
         this.customerRepository = customerRepository;
@@ -65,6 +71,21 @@ public class OrderService {
         customerRepository.save(customer);
         deliveryPartnerRepo.save(partner);
         restaurantRepository.save(restaurant);
+
+
+//          send an email
+//        String text = "Hi! " + customer.getName() + " The below order is ready\n" +
+//                order.getOrderId() + " \nThis is the Food list: "+order.getFoodItems();
+//
+//        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+//        simpleMailMessage.setFrom("patelrambharat@gamil.com");
+//        simpleMailMessage.setTo(customer.getEmail());
+//        simpleMailMessage.setSubject("Congrats!! Order Delivered");
+//        simpleMailMessage.setText(text);
+//
+//
+//
+//        javaMailSender.send(simpleMailMessage);
 
         // prepare orderresponse
         return OrderTransformer.OrderToOrderResponse(savedOrder);

@@ -7,7 +7,7 @@ import com.driver.SwiggatoApplication.model.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FoodItemTransformer {
+public class MenuItemTransformer {
     public static MenuResponse FoodItemToFoodResponse(MenuItem menuItem){
         return MenuResponse.builder()
                 .dishName(menuItem.getDishName())
@@ -22,7 +22,7 @@ public class FoodItemTransformer {
         }
         List<MenuResponse> menuResponseList = new ArrayList<>();
         for (MenuItem menuItem : menuItemList) {
-            MenuResponse menuResponse = FoodItemTransformer.FoodItemToFoodResponse(menuItem);
+            MenuResponse menuResponse = MenuItemTransformer.FoodItemToFoodResponse(menuItem);
             menuResponseList.add(menuResponse);
         }
         return menuResponseList;
